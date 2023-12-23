@@ -8,7 +8,14 @@ import (
 // Define a home handler function which writes a byte slice containing response body
 
 func home(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello world"))
+
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+
+	}
+	w.Write([]byte("Hello world from snippet box"))
+
 }
 
 // Add a snippetView handler function
