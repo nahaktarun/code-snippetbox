@@ -11,11 +11,23 @@ func home(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello world"))
 }
 
+// Add a snippetView handler function
+func snippetView(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Display a specific snippet...."))
+}
+
+// Add a snippetCreate handler function
+func snippetCreate(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Create a new snippet..."))
+}
+
 func main() {
 
 	// Create mux and attach with the handler function
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
+	mux.HandleFunc("/snippet/view", snippetView)
+	mux.HandleFunc("/snippet/create", snippetCreate)
 
 	log.Printf("Starting server on :4000")
 
